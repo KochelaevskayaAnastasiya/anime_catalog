@@ -182,35 +182,6 @@
                     ppp.innerHTML = name_id[1];
                     div_item.appendChild(img);
                     div_item.appendChild(ppp);
-                    $('.anime_catalog_item').mouseenter(function () {
-                        var modal = document.getElementById('productModal');
-                        var rect = this.getBoundingClientRect();
-
-                        modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
-                        let yy = window.scrollY + rect.top;
-                        modal.style.top = yy + 'px'; // Позиционирование по вертикали
-                        modal.style.display = 'block'; // Показать модальное окно
-
-                        var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
-                        $.ajax({
-                            url: '/Catalog?handler=GetProductInfo',
-                            type: 'GET',
-                            data: { id: productId },
-                            success: function (data) {
-                                $('#productModalBody').html(data);
-                                $('#productModal').modal('show');
-                                $('body').css('padding-right', '0px');
-
-                            }
-                        });
-                    });
-
-                    $('.anime_catalog_item').mouseleave(function () {
-                        // Код для закрытия модального окна при покидании области
-                        $('#productModal').modal('hide');
-                    });
-
-                    
                     container_anime.appendChild(div_item);
                 }
             }
@@ -247,78 +218,45 @@
                                 ppp.innerHTML = name_id[1];
                                 div_item.appendChild(img);
                                 div_item.appendChild(ppp);
-
-
-                                $('.anime_catalog_item').mouseenter(function () {
-                                    var modal = document.getElementById('productModal');
-                                    var rect = this.getBoundingClientRect();
-
-                                    modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
-                                    let yy = window.scrollY + rect.top;
-                                    modal.style.top = yy + 'px'; // Позиционирование по вертикали
-                                    modal.style.display = 'block'; // Показать модальное окно
-
-                                    var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
-                                    $.ajax({
-                                        url: '/Catalog?handler=GetProductInfo',
-                                        type: 'GET',
-                                        data: { id: productId },
-                                        success: function (data) {
-                                            $('#productModalBody').html(data);
-                                            $('#productModal').modal('show');
-                                            $('body').css('padding-right', '0px');
-                                        }
-                                    });
-                                });
-
-                                $('.anime_catalog_item').mouseleave(function () {
-                                    // Код для закрытия модального окна при покидании области
-                                    $('#productModal').modal('hide'); 
-                                });
-                                    document.getElementById('11').innerHTML=i;
-                                document.getElementById('11').innerHTML += data.length - 1;
-
-                                if (i == data.length-1) {
-                                    let sss = 'div' + ii; 
-                                    document.getElementById('11').innerHTML += sss;
-
-                                    $("#" + sss).mouseenter(function () {
-                                        var modal = document.getElementById('productModal');
-                                        var rect = this.getBoundingClientRect();
-
-                                        modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
-                                        let yy = window.scrollY + rect.top;
-                                        modal.style.top = yy + 'px'; // Позиционирование по вертикали
-                                        modal.style.display = 'block'; // Показать модальное окно
-
-                                        var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
-                                        $.ajax({
-                                            url: '/Catalog?handler=GetProductInfo',
-                                            type: 'GET',
-                                            data: { id: productId },
-                                            success: function (data) {
-                                                $('#productModalBody').html(data);
-                                                $('#productModal').modal('show');
-                                                $('body').css('padding-right', '0px');
-
-                                            }
-                                        });
-                                    });
-
-                                    $("#" + sss).mouseleave(function () {
-                                        // Код для закрытия модального окна при покидании области
-                                        $('#productModal').modal('hide');
-                                    });
-                                }
+                                
 
                                 container_anime.appendChild(div_item);
-                                }
+                             }
                             isLoading = false;
                         }
                     });
                 }
             });
         });
+
+
+        $('#anime_catalog').on('mouseenter', '.anime_catalog_item', function () {
+            var modal = document.getElementById('productModal');
+            var rect = this.getBoundingClientRect();
+
+            modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
+            let yy = window.scrollY + rect.top;
+            modal.style.top = yy + 'px'; // Позиционирование по вертикали
+            modal.style.display = 'block'; // Показать модальное окно
+
+            var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
+            $.ajax({
+                url: '/Catalog?handler=GetProductInfo',
+                type: 'GET',
+                data: { id: productId },
+                success: function (data) {
+                    $('#productModalBody').html(data);
+                    $('#productModal').modal('show');
+                    $('body').css('padding-right', '0px');
+                }
+            });
+        });
+
+        $('#anime_catalog').on('mouseleave', '.anime_catalog_item', function () {
+            // Код для закрытия модального окна при покидании области
+            $('#productModal').modal('hide');
+        });
+
 
             
 
@@ -412,35 +350,6 @@
                         ppp.innerHTML = name_id[1];
                         div_item.appendChild(img);
                         div_item.appendChild(ppp);
-
-
-                        $('.anime_catalog_item').mouseenter(function () {
-                            var modal = document.getElementById('productModal');
-                            var rect = this.getBoundingClientRect();
-
-                            modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
-                            let yy = window.scrollY + rect.top;
-                            modal.style.top = yy + 'px'; // Позиционирование по вертикали
-                            modal.style.display = 'block'; // Показать модальное окно
-
-                            var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
-                            $.ajax({
-                                url: '/Catalog?handler=GetProductInfo',
-                                type: 'GET',
-                                data: { id: productId },
-                                success: function (data) {
-                                    $('#productModalBody').html(data);
-                                    $('#productModal').modal('show');
-                                    $('body').css('padding-right', '0px');
-                                }
-                            });
-                        });
-
-                        $('.anime_catalog_item').mouseleave(function () {
-                            // Код для закрытия модального окна при покидании области
-                            $('#productModal').modal('hide');
-                        });
-
                         container_anime.appendChild(div_item);
                     }
                 }
