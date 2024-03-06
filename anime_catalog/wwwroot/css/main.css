@@ -1,0 +1,95 @@
+@import url("common.css");
+
+.anime_news {
+    display: flex;
+    column-gap: 30px;
+    row-gap: 30px;
+    flex-wrap: wrap; /*перенос*/
+    padding-top: 10px;
+}
+
+.anime_news_item {
+    width: 300px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.anime_news_item {
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #000;
+    margin: 0px 10px;
+    text-align: center;
+}
+
+    .anime_news_item img {
+        wigth =100px;
+        height =300px;
+        display: block;
+        margin: 0 auto 15px;
+        border-radius: 10px;
+    }
+
+
+    .anime_news_item:hover {
+        background: #dcdcdc;
+    }
+
+.main_article {
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+    color: #000;
+    margin: 10px;
+    border: 1px solid #CCC;
+    padding: 6px;
+    overflow: hidden;
+}
+
+    .main_article img {
+        wigth =100px;
+        height =300px;
+        display: block;
+        margin: 0 auto 15px;
+        border-radius: 10px;
+        float: left;
+    }
+
+    .main_article p {
+        margin: 10px;
+        font-size: 1.2em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        transition: color 0.3s;
+        color: #000;
+    }
+
+    .main_article a {
+        margin: 10px;
+        font-size: 1.2em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        transition: color 0.3s;
+        color: #000;
+    }
+
+        .main_article a:hover {
+            background: #dcdcdc;
+        }
+
+
+
+/*кнопка наверх*/
+.back-to-top {
+    position: absolute;
+    right: 0;
+}
+
+
+/*кнопка наверх*/
+.research {
+    display: none;
+}

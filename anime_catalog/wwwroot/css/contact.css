@@ -1,0 +1,12 @@
+@import url("common.css");
+
+img
+{
+  padding: 2px;
+  float: left;
+}
+
+.social-icons
+{
+overflow:hidden;
+}

@@ -1,0 +1,108 @@
+@import url("common.css");
+
+.anime_catalog {
+    display: flex;
+    column-gap: 30px;
+    row-gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    margin-left: 70px;
+}
+
+.anime_catalog_item {
+  width: 300px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.anime_catalog_item a {
+  font-size: 1.2em; 
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 500;
+  color: #000;
+  margin: 0px 10px;
+  text-align:center;
+}
+
+.anime_catalog_item img {
+  wigth=100px;
+  height=300px;
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+}
+
+
+.anime_catalog_item:hover {
+  background: #dcdcdc;
+}
+
+
+.anime_catalog_common {
+  overflow:hidden;
+}
+
+.anime_catalog_common p{
+  margin: 10px;
+  font-size: 1.2em; 
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 500;
+  color: #000;
+}
+
+.anime_catalog_common button{
+  margin: 10px;
+  font-size: 1.2em; 
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 500;
+  color: #000;
+}
+
+.anime_catalog_common input{
+  font-size: 15px;
+  margin: 10px;
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 500;
+  color: #000;
+}
+
+.anime_sort {
+  float:right;
+
+}
+
+.anime_catalog {
+  float:left;
+  width: 60%;
+  top: 0%;
+}
+
+.anime_sort a {
+  font-size: 1.2em; 
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+  color: #000;
+  margin: 0px 10px;
+  text-align:center;
+}
+
+
+.productModal {
+    display: none;
+    position: absolute;
+    top: 50px; /* Расстояние от верхнего края элемента до верхнего края модального окна */
+    left: 50px; /* Расстояние от левого края элемента до левого края модального окна */
+    width: 350px; /* Ширина модального окна */
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1; /* Убедитесь, что модальное окно будет отображаться поверх других элементов */
+}
+
+.productModalBody {
+    background-color: white;
+    text-align: justify;
+}
+

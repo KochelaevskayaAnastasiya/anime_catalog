@@ -1,0 +1,162 @@
+﻿@page
+@model anime_catalog.Pages.Add_animeModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/add_page.css"/>
+}
+@{
+    ViewData["Title"] = "Добавить аниме в каталог";
+
+}
+<main>
+    <h1>Добавление нового аниме</h1>
+    <div class="add_product">
+        <form class="add_product_form" method="POST" onsubmit="AddAnime();" name="formAddAnime" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td><label for="name">Название:</label></td>
+                    <td><input class="input" id="name" name="name" type="text" placeholder="Введите название"></td>
+                    <td><label class="error" id="errorName"></label></td>
+                </tr>
+                <tr>
+        <td><label for="description">Описание:</label></td>
+        <td><textarea id="description" name="description" type="text" placeholder="Введите описание"></textarea></td>
+    
+        <td><label class="error" id="errorDescription"></label></td>
+    </tr>
+    <tr>
+        <td><label for="pict">Обложка:</label></td>
+        <td>
+            <input type="file" asp-for="Photo" id="pict" multiple accept="image/jpeg">
+        </td>
+        <td><label class="error" id="errorImages"></label></td>
+    </tr>
+    <tr>
+        <td><label for="year">Год выпуска:</label></td>
+        <td><input class="input" id="year" name="year" type="text" placeholder="Введите год"></td>
+        <td><label class="error" id="errorYear"></label></td>
+    </tr>
+
+    <tr>
+        <td><label for="score">Оценка:</label></td>
+        <td><input class="input" id="score" name="score" type="text" placeholder="Введите оценку"></td>
+        <td><label class="error" id="errorScore"></label></td>
+    </tr>
+    <tr>
+        <td><label for="auther">Студия:</label></td>
+        <td><input class="input" id="auther" name="auther" type="text" placeholder="Введите студию"></td>
+        <td><label class="error" id="errorAuther"></label></td>
+    </tr>
+    <tr>
+        <td><label for="count">Количество эпизодов:</label></td>
+        <td><input class="input" id="count" name="count" type="text" placeholder="Введите количество серий"></td>
+        <td><label class="error" id="errorCount"></label></td>
+    </tr>
+    </table>
+    <div class="add_product_item2">
+        <div class="add_product_check">
+            <p>Жанры:</p>
+            <div id="div_genres">
+            </div>
+        </div>
+        <label class="error" id="errorCheck1"></label>
+    </div>
+    <div class="add_product_item2">
+        <div class="add_product_check">
+            <p>Тэги:</p>
+            <div id="div_tags">
+            </div>
+        </div>
+        <label class="error" id="errorCheck2"></label>
+    </div>
+    <div class="add_product_item2">
+        <div class="add_product_item">
+            <label for="action">Возрастное ограничение:</label>
+            <select class="select" name="action" id="action">
+                <option value="">...</option>
+                
+            </select>
+        </div>
+        <label class="error" id="errorAction"></label>
+    </div>
+    <button class="button" id="addButton" type="submit">Добавить</button>
+    </form>
+
+    <label id="11"></label>
+
+
+
+    <script>
+        const g = '@String.Join(",",Model.ganres)';
+        const ganres = g.split(',');
+        const a = '@String.Join(",",Model.ages)';
+        const ages = a.split(',');
+        const t = '@String.Join(",",Model.tags)';
+        const tags = t.split(',');
+
+        let container_genres = document.getElementById('div_genres');
+
+        let llll = document.getElementById('11');
+
+
+        for (let i = 0; i < ganres.length; i++) {
+            let input_genres = document.createElement("input");
+            input_genres.type = "checkbox";
+            input_genres.value = ganres[i];
+            input_genres.name = "check1[]";
+            input_genres.className = 'check1';
+            input_genres.id = 'genres' + i;
+
+            
+            let label_genres = document.createElement("label");
+            label_genres.setAttribute('for', input_genres.id);
+            label_genres.innerHTML = ganres[i];
+
+            container_genres.appendChild(input_genres);
+            container_genres.appendChild(label_genres);
+        }
+            
+        let container_tags = document.getElementById('div_tags');
+        for (let j = 0; j < tags.length; j++) {
+            let input_tags = document.createElement("input");
+            input_tags.type = "checkbox";
+            input_tags.value = tags[j];
+                input_tags.name = "check2[]";
+                input_tags.className = "check2";
+            input_tags.id = 'tags' + j;
+
+
+            let label_tags = document.createElement("label");
+            label_tags.setAttribute('for', input_tags.id);
+            label_tags.innerHTML = tags[j];
+
+            container_tags.appendChild(input_tags);
+            container_tags.appendChild(label_tags);
+        }
+
+        let container_ages = document.getElementById('action');
+        for (let k = 0; k < ages.length; k++) {
+            let option_ages = document.createElement("option");
+            option_ages.value = ages[k];
+            option_ages.text = ages[k];
+            container_ages.appendChild(option_ages);
+        }
+
+            function AddAnime(){
+                    let k = true;
+                if (!document.getElementById('errorName').textContent == '') { k = false; }
+                if (!document.getElementById('errorDescription').textContent == '') { k = false; }
+                if (!document.getElementById('errorImages').textContent == '') { k = false; }
+                if (!document.getElementById('errorYear').textContent == '') { k = false; }
+                if (!document.getElementById('errorScore').textContent == '') { k = false; }
+                if (!document.getElementById('errorAuther').textContent == '') { k = false; }
+                if (!document.getElementById('errorCount').textContent == '') { k = false; }
+                if (!document.getElementById('errorCheck1').textContent == '') { k = false; }
+                if (!document.getElementById('errorCheck2').textContent == '') { k = false; }
+                if (!document.getElementById('errorAction').textContent == '') { k = false; }
+                if (!k) { event.preventDefault();}
+                return true;
+            }
+    </script>
+    <script src="~/js/validator.js"></script>
+    </div>
+</main>

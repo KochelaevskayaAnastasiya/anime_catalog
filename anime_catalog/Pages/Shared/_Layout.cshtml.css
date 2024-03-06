@@ -1,0 +1,95 @@
+﻿/* ------------------------- HEADER ------------------------------- */
+header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.0em;
+    width: 100%;
+    height: 8%;
+    padding: 10px 5% 0px 5%;
+    background-color: #FEFEFE;
+    float: left;
+    border-bottom: 1px solid silver;
+    display: flex; /* Добавляем flex-контейнер для управления расположением элементов */
+    align-items: center; /* Выравниваем элементы по центру по вертикали */
+    justify-content: space-between; /* Распределяем элементы по горизонтали */
+}
+
+.header_nav {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+}
+
+.header_nav-list {
+    display: flex;
+    list-style-type: none;
+}
+
+.header_cart-list {
+    display: flex;
+    padding-top: 15px;
+    list-style-type: none;
+}
+
+.header_nav a {
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #000;
+    margin: 0px 10px;
+}
+
+    .header_nav a:hover {
+        background: #dcdcdc;
+    }
+
+
+.header_contact a {
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #000;
+}
+
+    .header_contact a:hover {
+        background: #dcdcdc;
+    }
+
+.header_in {
+    padding-right: 100px;
+}
+
+    .header_in a {
+        margin-right: 15px;
+        font-size: 1.2em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        color: #000;
+    }
+
+        .header_in a:hover {
+            background: #dcdcdc;
+        }
+
+/* ------------------------- FOOTER ------------------------------- */
+footer {
+    padding: 10px 50px 10px;
+    border-top: 1px solid silver;
+}
+
+.footer_documents {
+    align-items: center;
+    justify-content: center;
+}
+
+    .footer_documents a {
+        margin-right: 50px;
+        font-size: 1.2em;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        color: #000;
+    }
+
+        .footer_documents a:hover {
+            background: #dcdcdc;
+        }

@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/main.css" />
+}
+@{
+    ViewData["Title"] = "Аниме. Каталог аниме";
+}
+
+    <main id="main">
+        <label id="11"></label>
+        <h1>Animeworld - справочник аниме</h1>
+        <h2>Последние обновления онгоингов</h2>
+    <div class="anime_news" id="anime_news">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Index?handler=Data', // URL вашего метода
+                type: 'GET',
+                success: function (data) {
+                    $('#11').text(data[0]);
+                    let container_anime = document.getElementById('anime_news');
+                    for (let i = 0; i < data.length; i++) {
+                        const name_id = data[i].split('$');
+                        let div_item = document.createElement("div");
+                        div_item.className = 'anime_news_item';
+                        div_item.id = 'div' + i;
+                        div_item.class = 'anime_news_item';
+                        const img = new Image(300, 350);
+                        let str_scr = "images/posters/" + name_id[0] + ".jpeg";
+                        let str_alt = "что за" + name_id[1] + "";
+                        img.src = str_scr;
+                        img.alt = str_alt;
+                        const ppp = document.createElement("p");
+                        ppp.innerHTML = name_id[1];
+                        div_item.appendChild(img);
+                        div_item.appendChild(ppp);
+                        container_anime.appendChild(div_item);
+                    }
+                }
+            });
+        });
+    </script>
+
+
+    </main>
+    

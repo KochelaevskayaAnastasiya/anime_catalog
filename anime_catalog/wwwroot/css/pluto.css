@@ -1,0 +1,25 @@
+@import url("common.css");
+
+ul {
+list-style: square outside;
+margin-left: 30px;
+padding-left: 0;
+}
+
+p{
+  margin: 10px;
+  font-size: 1.2em; 
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+  color: #000;
+}
+
+img {
+  wigth=100px;
+  height=300px;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+}
+

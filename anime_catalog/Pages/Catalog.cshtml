@@ -1,0 +1,480 @@
+﻿@page
+@model anime_catalog.Pages.CatalogModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/catalog.css" />
+}
+@{
+    ViewData["Title"] = "Каталог аниме";
+}
+<main>
+    <label id="11"></label>
+    <div class="productModal" id="productModal">
+        <div id="productModalBody"></div>
+    </div>
+    <h1>Каталог аниме</h1>
+    <div class="anime_catalog_common">
+        <div class="anime_catalog" id="anime_catalog">
+        </div>
+        <div class="anime_sort">
+            <div class="anime_sort_regul">
+                <p>Упорядочить по:</p>
+                <select name="anime_sort_regul_1" id="anime_sort_regul_1">
+                    <option value="Score" checked="checked">Рейтингу</option>
+                    <option value="Year">Дате добавления</option>
+                    <option value="Count_ser">Количеству эпизодов</option>
+                </select>
+                <select name="anime_sort_regul_2" id="anime_sort_regul_2">
+                    <option value="DESC" checked="checked">По убыванию</option>
+                    <option value="ASC">По возрастанию</option>
+                </select>
+            </div>
+            <div class="anime_sort_genres" id="anime_sort_genres">
+                <p>Поиск по жанрам</p>
+            </div>
+            <div class="anime_sort_tegs" id="anime_sort_tegs">
+                <p>Поиск по тэгам</p>
+            </div>
+            <div class="anime_sort_count_ser">
+                <p>Количество эпизодов</p>
+                <input id="count1" type="text" placeholder="От">
+                <span class="text-muted">—</span>
+                <input id="count2" type="text" placeholder="До">
+            </div>
+            <div class="anime_sort_year">
+                <p>Год выпуска</p>
+                <input id="year1" type="text" placeholder="От">
+                <span class="text-muted">—</span>
+                <input id="year2" type="text" placeholder="До">
+            </div>
+            <div class="anime_sort_score">
+                <p>Оценка</p>
+                <input id="score1" type="text" placeholder="От">
+                <span class="text-muted">—</span>
+                <input id="score2" type="text" placeholder="До">
+            </div>
+            <div class="anime_sort_rating" id="anime_sort_rating">
+                <p>Возрастной рейтинг</p>
+            </div>
+            <br>
+            <button type="button" id="myButton" class="subscribe_button">Показать</button>
+            <button type="button" id="myButton2" class="subscribe_button2">Сбросить</button>
+
+        </div>
+    </div>
+    <script>
+        const g = '@String.Join(",",Model.ganres)';
+        const ganres = g.split(',');
+        const a = '@String.Join(",",Model.ages)';
+        const ages = a.split(',');
+        const t = '@String.Join(",",Model.tags)';
+        const tags = t.split(',');
+
+        let container_genres = document.getElementById('anime_sort_genres');
+        let llll = document.getElementById('11');
+        for (let i = 0; i < ganres.length; i++) {
+            let input_genres = document.createElement("input");
+            input_genres.type = "checkbox";
+            input_genres.value = ganres[i];
+            input_genres.name = "check1[]";
+            input_genres.className = 'check1';
+            input_genres.id = 'genres' + i;
+            let label_genres = document.createElement("label");
+            label_genres.setAttribute('for', input_genres.id);
+            label_genres.innerHTML = ganres[i];
+            container_genres.appendChild(input_genres);
+            container_genres.appendChild(label_genres);
+        }
+
+        let container_tags = document.getElementById('anime_sort_tegs');
+        for (let j = 0; j < tags.length; j++) {
+            let input_tags = document.createElement("input");
+            input_tags.type = "checkbox";
+            input_tags.value = tags[j];
+            input_tags.name = "check2[]";
+            input_tags.className = "check2";
+            input_tags.id = 'tags' + j;
+            let label_tags = document.createElement("label");
+            label_tags.setAttribute('for', input_tags.id);
+            label_tags.innerHTML = tags[j];
+            container_tags.appendChild(input_tags);
+            container_tags.appendChild(label_tags);
+        }
+
+        let container_ages = document.getElementById('anime_sort_rating');
+        for (let j = 0; j < ages.length; j++) {
+            let input_ages = document.createElement("input");
+            input_ages.type = "checkbox";
+            input_ages.value = ages[j];
+            input_ages.name = "check3[]";
+            input_ages.className = "check3";
+            input_ages.id = 'ages' + j;
+            let label_ages = document.createElement("label");
+            label_ages.setAttribute('for', input_ages.id);
+            label_ages.innerHTML = ages[j];
+            container_ages.appendChild(input_ages);
+            container_ages.appendChild(label_ages);
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        let str_filt = '' + document.getElementById("anime_sort_regul_1").value + ',' + document.getElementById("anime_sort_regul_2").value + '$';
+
+
+        var checkboxes1 = document.getElementsByClassName("check1");
+        for (var i = 0; i < checkboxes1.length; i++) {
+            if (checkboxes1[i].checked) {
+                str_filt +=1 + ',';
+            }
+            else{
+                str_filt += 0 + ',';
+            }
+        }
+        str_filt += '$';
+
+        var checkboxes2 = document.getElementsByClassName("check2");
+        for (var i = 0; i < checkboxes2.length; i++) {
+            if (checkboxes2[i].checked) {
+                str_filt += 1 + ',';
+            }
+            else {
+                str_filt += 0 + ',';
+            }
+        }
+        str_filt += '$';
+
+
+        str_filt += document.getElementById("count1").value + ',' + document.getElementById("count2").value + '$';
+        str_filt += document.getElementById("year1").value + ',' + document.getElementById("year2").value + '$';
+        str_filt += document.getElementById("score1").value + ',' + document.getElementById("score2").value + '$';
+
+        var checkboxes3 = document.getElementsByClassName("check3");
+        for (var i = 0; i < checkboxes3.length; i++) {
+            if (checkboxes3[i].checked) {
+                str_filt += 1 + ',';
+            }
+            else {
+                str_filt += 0 + ',';
+            }
+        }
+
+
+        $.ajax({
+            url: '/Catalog?handler=NextPage&pageNumber=' + 1,
+            type: 'GET',
+            data: { str_filt: str_filt },
+            success: function (data) {
+                let container_anime = document.getElementById('anime_catalog');
+                for (let i = 0; i < data.length; i++) {
+                    const name_id = data[i].split('$');
+                    let div_item = document.createElement("div");
+                    div_item.className = 'anime_catalog_item';
+                    let ii = i;
+                    div_item.id = 'div' + ii;
+                    $(div_item).attr('data-id', name_id[0]);
+                    div_item.class = 'anime_catalog_item';
+                    const img = new Image(300, 350);
+                    let str_scr = "images/posters/" + name_id[0] + ".jpeg";
+                    let str_alt = name_id[1];
+                    img.src = str_scr;
+                    img.alt = str_alt;
+                    const ppp = document.createElement("p");
+                    ppp.innerHTML = name_id[1];
+                    div_item.appendChild(img);
+                    div_item.appendChild(ppp);
+                    $('.anime_catalog_item').mouseenter(function () {
+                        var modal = document.getElementById('productModal');
+                        var rect = this.getBoundingClientRect();
+
+                        modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
+                        let yy = window.scrollY + rect.top;
+                        modal.style.top = yy + 'px'; // Позиционирование по вертикали
+                        modal.style.display = 'block'; // Показать модальное окно
+
+                        var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
+                        $.ajax({
+                            url: '/Catalog?handler=GetProductInfo',
+                            type: 'GET',
+                            data: { id: productId },
+                            success: function (data) {
+                                $('#productModalBody').html(data);
+                                $('#productModal').modal('show');
+                                $('body').css('padding-right', '0px');
+
+                            }
+                        });
+                    });
+
+                    $('.anime_catalog_item').mouseleave(function () {
+                        // Код для закрытия модального окна при покидании области
+                        $('#productModal').modal('hide');
+                    });
+
+                    
+                    container_anime.appendChild(div_item);
+                }
+            }
+        });
+        var pageNumber = 1; // Начальная страница
+        $(document).ready(function () {
+            
+            var isLoading = false; // Флаг, предотвращающий повторные запросы
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !isLoading) {
+                    isLoading = true;
+                    pageNumber++;
+                    $.ajax({
+                        url: '/Catalog?handler=NextPage&pageNumber=' + pageNumber,
+                        type: 'GET',
+                        data: { str_filt: str_filt },
+                        success: function (data) {
+                            let container_anime = document.getElementById('anime_catalog');
+                            for (let i = 0; i < data.length; i++) {
+                                const name_id = data[i].split('$');
+                                let div_item = document.createElement("div");
+                                div_item.className = 'anime_catalog_item';
+                                let ii = (pageNumber-1)*6+i;
+                                div_item.id = 'div' + ii;
+                                $(div_item).attr('data-id', name_id[0]);
+                                div_item.class = 'anime_catalog_item';
+                                const img = new Image(300, 350);
+                                let str_scr = "images/posters/" + name_id[0] + ".jpeg";
+                                let str_alt = name_id[1];
+                                img.src = str_scr;
+                                img.alt = str_alt;
+                                const ppp = document.createElement("p");
+                                ppp.innerHTML = name_id[1];
+                                div_item.appendChild(img);
+                                div_item.appendChild(ppp);
+
+
+                                $('.anime_catalog_item').mouseenter(function () {
+                                    var modal = document.getElementById('productModal');
+                                    var rect = this.getBoundingClientRect();
+
+                                    modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
+                                    let yy = window.scrollY + rect.top;
+                                    modal.style.top = yy + 'px'; // Позиционирование по вертикали
+                                    modal.style.display = 'block'; // Показать модальное окно
+
+                                    var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
+                                    $.ajax({
+                                        url: '/Catalog?handler=GetProductInfo',
+                                        type: 'GET',
+                                        data: { id: productId },
+                                        success: function (data) {
+                                            $('#productModalBody').html(data);
+                                            $('#productModal').modal('show');
+                                            $('body').css('padding-right', '0px');
+                                        }
+                                    });
+                                });
+
+                                $('.anime_catalog_item').mouseleave(function () {
+                                    // Код для закрытия модального окна при покидании области
+                                    $('#productModal').modal('hide'); 
+                                });
+                                    document.getElementById('11').innerHTML=i;
+                                document.getElementById('11').innerHTML += data.length - 1;
+
+                                if (i == data.length-1) {
+                                    let sss = 'div' + ii; 
+                                    document.getElementById('11').innerHTML += sss;
+
+                                    $("#" + sss).mouseenter(function () {
+                                        var modal = document.getElementById('productModal');
+                                        var rect = this.getBoundingClientRect();
+
+                                        modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
+                                        let yy = window.scrollY + rect.top;
+                                        modal.style.top = yy + 'px'; // Позиционирование по вертикали
+                                        modal.style.display = 'block'; // Показать модальное окно
+
+                                        var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
+                                        $.ajax({
+                                            url: '/Catalog?handler=GetProductInfo',
+                                            type: 'GET',
+                                            data: { id: productId },
+                                            success: function (data) {
+                                                $('#productModalBody').html(data);
+                                                $('#productModal').modal('show');
+                                                $('body').css('padding-right', '0px');
+                                            }
+                                        });
+                                    });
+
+                                    $("#" + sss).mouseleave(function () {
+                                        // Код для закрытия модального окна при покидании области
+                                        $('#productModal').modal('hide');
+                                    });
+                                }
+
+                                container_anime.appendChild(div_item);
+                                }
+                            isLoading = false;
+                        }
+                    });
+                }
+            });
+        });
+
+            
+
+
+        $('#searchInput').on('input', function () {
+            var query = $(this).val();
+            $.ajax({
+                url: '/Catalog?handler=Search',
+                type: 'GET',
+                data: { query: query },
+                success: function (data) {
+                    $('#searchResults').html(data).show();
+                    if (data == "") {
+                        document.getElementById("searchResults").style.display = "none";
+                    }
+                }
+
+            });
+        });
+
+
+        $(document).on("click", "#myButton", function (e) {
+            str_filt = '' + document.getElementById("anime_sort_regul_1").value + ',' + document.getElementById("anime_sort_regul_2").value + '$';
+            
+
+            var checkboxes1 = document.getElementsByClassName("check1");
+            for (var i = 0; i < checkboxes1.length; i++) {
+                if (checkboxes1[i].checked) {
+                    str_filt += 1 + ',';
+                }
+                else {
+                    str_filt += 0 + ',';
+                }
+            }
+            str_filt += '$';
+
+            var checkboxes2 = document.getElementsByClassName("check2");
+            for (var i = 0; i < checkboxes2.length; i++) {
+                if (checkboxes2[i].checked) {
+                    str_filt += 1 + ',';
+                }
+                else {
+                    str_filt += 0 + ',';
+                }
+            }
+            str_filt += '$';
+
+
+            str_filt += document.getElementById("count1").value + ',' + document.getElementById("count2").value + '$';
+            str_filt += document.getElementById("year1").value + ',' + document.getElementById("year2").value + '$';
+            str_filt += document.getElementById("score1").value + ',' + document.getElementById("score2").value + '$';
+
+            var checkboxes3 = document.getElementsByClassName("check3");
+            for (var i = 0; i < checkboxes3.length; i++) {
+                if (checkboxes3[i].checked) {
+                    str_filt += 1 + ',';
+                }
+                else {
+                    str_filt += 0 + ',';
+                }
+            }
+
+
+            // Предотвращаем стандартное действие кнопки (если это необходимо)
+            pageNumber = 1;
+            e.preventDefault();
+            $.ajax({
+                url: '/Catalog?handler=NextPage&pageNumber=' + 1,
+                type: 'GET',
+                data: { str_filt: str_filt },
+                success: function (data) {
+                    document.getElementById('anime_catalog').innerHTML = "";
+                    let container_anime = document.getElementById('anime_catalog');
+                    for (let i = 0; i < data.length; i++) {
+
+
+                        const name_id = data[i].split('$');
+                        let div_item = document.createElement("div");
+                        div_item.className = 'anime_catalog_item';
+                        let ii = i;
+
+                        div_item.id = 'div' + ii;
+                        $(div_item).attr('data-id', name_id[0]);
+                        div_item.class = 'anime_catalog_item';
+                        const img = new Image(300, 350);
+                        let str_scr = "images/posters/" + name_id[0] + ".jpeg";
+                        let str_alt = name_id[1];
+                        img.src = str_scr;
+                        img.alt = str_alt;
+                        const ppp = document.createElement("p");
+                        ppp.innerHTML = name_id[1];
+                        div_item.appendChild(img);
+                        div_item.appendChild(ppp);
+
+
+                        $('.anime_catalog_item').mouseenter(function () {
+                            var modal = document.getElementById('productModal');
+                            var rect = this.getBoundingClientRect();
+
+                            modal.style.left = rect.right + 'px'; // Позиционирование по горизонтали
+                            let yy = window.scrollY + rect.top;
+                            modal.style.top = yy + 'px'; // Позиционирование по вертикали
+                            modal.style.display = 'block'; // Показать модальное окно
+
+                            var productId = $(this).data('id'); // Предполагается, что у каждого товара есть атрибут data-id с его ID
+                            $.ajax({
+                                url: '/Catalog?handler=GetProductInfo',
+                                type: 'GET',
+                                data: { id: productId },
+                                success: function (data) {
+                                    $('#productModalBody').html(data);
+                                    $('#productModal').modal('show');
+                                    $('body').css('padding-right', '0px');
+                                }
+                            });
+                        });
+
+                        $('.anime_catalog_item').mouseleave(function () {
+                            // Код для закрытия модального окна при покидании области
+                            $('#productModal').modal('hide');
+                        });
+
+                        container_anime.appendChild(div_item);
+                    }
+                }
+            });
+        });
+
+
+        $('#myButton2').on('click', function (e) {
+            e.preventDefault();
+            $('#count1').val('');
+            $('#count2').val('');
+            $('#year1').val('');
+            $('#year2').val('');
+            $('#score1').val('');
+            $('#score2').val('');
+
+            const selectEl1 = document.getElementById('anime_sort_regul_1');
+            selectEl1.value = 'Score';
+            selectEl1.dispatchEvent(new Event('change'));
+
+            const selectEl2 = document.getElementById('anime_sort_regul_2');
+            selectEl2.value = 'DESC';
+            selectEl2.dispatchEvent(new Event('change'));
+
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var checkbox of checkboxes) {
+                checkbox.checked = false;
+            }
+
+        });
+
+    </script>
+    
+    
+
+
+
+</main>

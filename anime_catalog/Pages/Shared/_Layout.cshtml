@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Каталог аниме</title>
+    <link rel="stylesheet" href="/select2/dist/css/select2.min.css">
+
+    @RenderSection("Styles", false)
+    
+</head>
+<body>
+    <header class="header">
+        <nav class="header_nav">
+            <ul class="header_nav-list">
+                <li><a id="catalog_button" asp-page="/Catalog">Каталог</a></li>
+                <li><a id="button_reseach">Поиск</a></li>
+                <div class="research" id="research">
+                    <input type="text" id="searchInput" placeholder="Искать здесь...">
+                    <div id="searchResults" style="display: none; position: absolute;"></div>
+                </div>
+                <li><a href="page_news.html">Новости</a></li>
+                <li><a href="page_about.html">О сайте</a></li>
+                <li><a href="page_FAG.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <div class="header_logo">
+            <a href="LR3_main.html">
+                <img src="images/logo.png" alt="Главная" wigth="50" height="50" />
+            </a>
+        </div>
+        <div class="header_contact">
+            <a href="page_contact.html">Контакты</a>
+        </div>
+        <div class="header_in">
+            <a href="page_in.html">Войти</a>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="footer_documents">
+        <a href="page_contact.html">Обратная связь</a>
+        <a href="page_agreement.html">Пользовательское соглашение</a>
+        <a href="#top" id="back-to-top" class="back-to-top">Вернуться наверх</a>
+    </footer>
+    <script src="toTop.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="/jquery.min.js"></script>
+    <script src="/select2/dist/js/select2.min.js"></script>
+    <script src="/select2/dist/js/i18n/ru.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

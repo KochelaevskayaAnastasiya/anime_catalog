@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\article\MF.jpg" />
+    <None Include="wwwroot\images\article\pluto.jpg" />
+    <None Include="wwwroot\images\article\pluto_2.jpg" />
+    <None Include="wwwroot\images\contacts\mail.png" />
+    <None Include="wwwroot\images\contacts\tl.png" />
+    <None Include="wwwroot\images\contacts\vk.png" />
+    <None Include="wwwroot\images\logo.png" />
+    <None Include="wwwroot\images\posters\agate_poster.jpg" />
+    <None Include="wwwroot\images\posters\blue_orchestra_poster.jpg" />
+    <None Include="wwwroot\images\posters\Hanako_kun_poster.jpg" />
+    <None Include="wwwroot\images\posters\helk_poster.jpg" />
+    <None Include="wwwroot\images\posters\helk_poster2.jpg" />
+    <None Include="wwwroot\images\posters\helk_poster3.jpg" />
+    <None Include="wwwroot\images\posters\helk_poster4.jpg" />
+    <None Include="wwwroot\images\posters\helk_poster5.jpg" />
+    <None Include="wwwroot\images\posters\LingJianZun_poster.jpg" />
+    <None Include="wwwroot\images\posters\TokyoRevengers_poster.jpg" />
+    <None Include="wwwroot\images\star.jpg" />
+    <None Include="wwwroot\images\star.png" />
+    <None Include="wwwroot\images\top.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+</Project>
