@@ -1,0 +1,32 @@
+﻿@page "{id?}"
+@model anime_catalog.Pages.AnimeModel
+@{
+	var imagePath = "images/posters/" + Model.id + ".jpeg";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/anime.css" />
+}
+@{
+    ViewData["Title"] = "Аниме ";
+}
+
+<main>
+	<div class="discr_anime">
+		<h1>@Model.name</h1>
+		<div>
+			<img src="@imagePath" alt="Аниме" width="300" height="350" />
+
+		</div>
+		<h2>Описание аниме:</h2>
+		<p>@Model.discription_anime</p>
+		<p>@Model.year</p>
+
+		<p style="display:inline">@Model.score / 10</p>
+		<p>@Model.author</p>
+		<p>@Model.count</p>
+		<p>@Model.genres</p>
+		<p>@Model.tags</p>
+		<p>@Model.age</p>
+	</div>
+
+</main>

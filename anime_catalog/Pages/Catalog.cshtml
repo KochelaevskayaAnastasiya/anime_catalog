@@ -257,6 +257,11 @@
             $('#productModal').modal('hide');
         });
 
+        $('#anime_catalog').on('click', '.anime_catalog_item', function () {
+            var productId = $(this).data('id'); // Assuming each item has a data-id attribute with its ID
+            window.location.href = '/Anime?id=' + productId; // Navigate to the AnimeDetails Razor Page with the productId as a query parameter
+        });
+
 
             
 
