@@ -6,6 +6,7 @@ img {
   display: block;
   border-radius: 10px;
   float:left;
+  margin-right:20px;
 }
 
 .discr_anime {
@@ -15,16 +16,18 @@ img {
   transition: color 0.3s;
   color: #000;
   margin: 10px;
+  margin-left: 30px;
   padding:6px;
   overflow:hidden;
 }
 
+
 .discr_anime p {
-  margin: 10px;
-  font-size: 1.2em; 
-  font-family: 'Montserrat', sans-serif; 
-  font-weight: 500;
-  color: #000;
+    margin: 10px;
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #000;
 }
 
 .discr_anime button{
