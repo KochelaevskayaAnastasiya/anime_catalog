@@ -24,22 +24,30 @@
                     for (let i = 0; i < data.length; i++) {
                         const name_id = data[i].split('$');
                         let div_item = document.createElement("div");
-                        div_item.className = 'anime_news_item';
+                        div_item.className = 'anime_catalog_item';
                         div_item.id = 'div' + i;
-                        div_item.class = 'anime_news_item';
+                        $(div_item).attr('data-id', name_id[0]);
+                        div_item.class = 'anime_catalog_item';
                         const img = new Image(300, 350);
                         let str_scr = "images/posters/" + name_id[0] + ".jpeg";
-                        let str_alt = "что за" + name_id[1] + "";
+                        let str_alt = name_id[1];
                         img.src = str_scr;
                         img.alt = str_alt;
                         const ppp = document.createElement("p");
                         ppp.innerHTML = name_id[1];
                         div_item.appendChild(img);
                         div_item.appendChild(ppp);
+
+
                         container_anime.appendChild(div_item);
                     }
                 }
             });
+        });
+
+        $('#anime_news').on('click', '.anime_catalog_item', function () {
+            var productId = $(this).data('id'); // Assuming each item has a data-id attribute with its ID
+            window.location.href = '/Anime?id=' + productId; // Navigate to the AnimeDetails Razor Page with the productId as a query parameter
         });
     </script>
 
