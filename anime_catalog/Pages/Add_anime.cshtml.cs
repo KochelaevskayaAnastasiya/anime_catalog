@@ -120,7 +120,7 @@ namespace anime_catalog.Pages
 
         public int GetIdGenre(string genre)
         {
-            string queryString = "SELECT ID_genre FROM [Genre] WHERE Genre = '" + genre + "';";
+            string queryString = "SELECT ID_genre FROM [Genre] WHERE Genre = N'" + genre + "';";
             SqlCommand command = new SqlCommand(queryString, database.getConnection());
             database.openConnection();
             SqlDataReader reader = command.ExecuteReader();
@@ -136,7 +136,7 @@ namespace anime_catalog.Pages
 
         public int GetIdTag(string tag)
         {
-            string queryString = "SELECT ID_tag FROM [Tag] WHERE Tag = '" + tag + "';";
+            string queryString = "SELECT ID_tag FROM [Tag] WHERE Tag = N'" + tag + "';";
             SqlCommand command = new SqlCommand(queryString, database.getConnection());
             database.openConnection();
             SqlDataReader reader = command.ExecuteReader();
@@ -187,6 +187,8 @@ namespace anime_catalog.Pages
         
         public async Task SavePhoto(int id_title)
         {
+            //string filePath = Path.Combine("d:/DZHosts/LocalUser/Kochelka/www.anime-catalog.somee.com/wwwroot/images/posters", id_title +".jpeg");
+            
             string filePath = Path.Combine("D:/University/8sem/ORO/anime_catalog/anime_catalog/wwwroot/images/posters", id_title +".jpeg");
             using (Stream fileStream = new FileStream(filePath, FileMode.Create))
             {
@@ -204,11 +206,11 @@ namespace anime_catalog.Pages
             string sc = "" + score;
             sc = sc.Replace(',', '.');
             string queryString = "INSERT INTO[Title] VALUES(" 
-                + id_title + ",'"
-                + name + "','"
+                + id_title + ",N'"
+                + name + "',N'"
                 + description + "',"
                 + year + ","
-                + sc + ",'"
+                + sc + ",N'"
                 + auther + "',"
                 + count + ","
                 + id_age

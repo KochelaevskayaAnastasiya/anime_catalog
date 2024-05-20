@@ -129,7 +129,7 @@ namespace anime_catalog.Pages
             string res = "";
             if (query != null && query != "")
             {
-                string queryString = "SELECT [Name] FROM [Title] WHERE [Name] LIKE '" + query + "%';";
+                string queryString = "SELECT [Name] FROM [Title] WHERE [Name] LIKE N'" + query + "%';";
 
                 SqlCommand command = new SqlCommand(queryString, database.getConnection());
                 database.openConnection();
