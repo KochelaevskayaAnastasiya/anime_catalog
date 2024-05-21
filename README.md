@@ -20,5 +20,23 @@
 Страница каталога с демонстрацией работы умного поиска
 
 <picture>
- <img alt="YOUR-ALT-TEXT" src="images_readme_catalog_anime/уровнисло.PNG" width="600">
+ <img alt="YOUR-ALT-TEXT" src="images_readme_catalog_anime/catalog.png" width="600">
+</picture>
+
+Страница каталога с демонстрацией диалогового окна, которое появляется при наведении мышкой на произведение
+
+<picture>
+ <img alt="YOUR-ALT-TEXT" src="images_readme_catalog_anime/dialog.png" width="600">
+</picture>
+
+Страница каталога с демонстрацией работы фитрации
+
+<picture>
+ <img alt="YOUR-ALT-TEXT" src="images_readme_catalog_anime/filtr.png" width="600">
+</picture>
+
+Страница добавления произведения
+
+<picture>
+ <img alt="YOUR-ALT-TEXT" src="images_readme_catalog_anime/add.png" width="600">
 </picture>
